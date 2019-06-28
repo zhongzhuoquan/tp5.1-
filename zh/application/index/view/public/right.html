@@ -1,0 +1,13 @@
+<div class="col-md-4">
+    <div class="page-header">
+        <h2>热门排行</h2>
+    </div>
+    {volist name="hotArtList" id="art"}
+        <a href="{:url('detail',['id'=>$art.id])}" class="list-group-item
+        {eq name="$i" value="1"}
+        active
+    {/eq}
+    ">{:mb_substr($art.title,0,15)}<span class="badge">{$art.pv}</span></a>
+    {/volist}
+    </div>
+</div>

@@ -1,0 +1,58 @@
+{layout name="public:layout"/}
+<h4 class="text-center text-success">评论管理</h4>
+<table class="table table-default table-hover text-center">
+    <tr>
+        <td>ID</td>
+        <td>用户名</td>
+        <td>文章标题</td>
+        <td>内容</td>
+        <td>状态</td>
+        <td>创建时间</td>
+        <td colspan="2">操作</td>
+    </tr>
+    {volist name="data" id="data" empty="$empty"}
+    <tr>
+        <td>{$data.id}</td>
+        <td>{$data.user_id|getUserName}</td>
+        <td>{$data.article_id|getArtName}</td>
+        <td>{$data.content}</td>
+        <td>{$data.create_time}</td>
+        {eq name="$data.status" value="1"}
+        <td style="color: green">正常</td>
+        {/eq}
+
+        {neq name="$data.status" value="1"}
+        <td style="color: red">禁用</td>
+        {/neq}
+        {eq name="$Think.session.admin_level" value="0"}
+        {eq name="$data.user_id" value="$Think.session.user_id"}
+        <td><a href="#" onclick="dele({$data.id});return false">删除</a></td>
+        {/eq}
+        {neq name="$data.user_id" value="$Think.session.user_id"}
+        <td><a href="{:url('comment/CommentEdit',['id'=>$data.id])}">回复</a></td>
+        {/neq}
+        {/eq}
+
+        {eq name="$Think.session.admin_level" value="1"}
+        <!--不是自己-->
+        {neq name="$data.user_id" value="$Think.session.user_id"}
+        <td><a href="{:url('comment/CommentEdit',['id'=>$data.id])}">回复</a></td>
+        <td><a href="#" onclick="dele({$data.id});return false">删除</a></td>
+        {/neq}
+       <!--自己-->
+        {eq name="$data.user_id" value="$Think.session.user_id"}
+        <td><label style="color: gray">回复</label></td>
+        <td><a href="#" onclick="dele({$data.id});return false">删除</a></td>
+        {/eq}
+        {/eq}
+
+    </tr>
+    {/volist}
+</table>
+<script>
+    function dele(id){
+        if(confirm('您是真的要删除吗？')==true){
+            window.location.href="{:url('comment/doDelete')}"+"?id="+id;
+        }
+    }
+</script>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>{$title|default="页面标题"}</title>
+    {load href="/static/css/bootstrap.css"/}
+    {load href="/static/js/jquery-3.4.1.min.js"/}
+    {load href="/static/js/bootstrap.js"/}
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {include file="public:nav"/}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            {include file="public:left"/}
+        </div>
+        <div class="col-md-10">
+            {__CONTENT__}
+        </div>
+    </div>
+</div>
+</body>
+</html>

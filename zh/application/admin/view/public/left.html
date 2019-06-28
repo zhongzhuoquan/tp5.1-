@@ -1,0 +1,25 @@
+{eq name="$Think.session.admin_level" value="1"}
+<ul class="nav nav-pills nav-stacked">
+  <li class="nav-header h3">系统管理</li>
+    <li><a href="{:url('site/index')}"><span class="glyphicon glyphicon-cog">&nbsp;网站管理</span></a></li>
+</ul>
+{/eq}
+<ul class="nav nav-pills nav-stacked">
+    <li class="nav-header h3">用户管理</li>
+    <li><a href="{:url('user/userList')}"><span class="glyphicon glyphicon-user">&nbsp;用户列表</span></a></li>
+</ul>
+
+<ul class="nav nav-pills nav-stacked">
+    <li class="nav-header h3">文章管理</li>
+    {eq name="$Think.session.admin_level" value="1"}
+    <li><a href="{:url('cate/cateList')}"><span class="glyphicon glyphicon-lock">&nbsp;分类管理</span></a></li>
+    {/eq}
+    <li><a href="{:url('article/artList')}"><span class="glyphicon glyphicon-list-alt">&nbsp;文章管理</span></a></li>
+</ul>
+<ul class="nav nav-pills nav-stacked">
+    <li class="nav-header h3">评论管理</li>
+    <!--{eq name="$Think.session.admin_level" value="1"}-->
+    <!--<li><a href="{:url('cate/cateList')}"><span class="glyphicon glyphicon-lock">&nbsp;分类管理</span></a></li>-->
+    <!--{/eq}-->
+    <li><a href="{:url('comment/index')}"><span class="glyphicon glyphicon-list-alt">&nbsp;回复评论</span></a></li>
+</ul>

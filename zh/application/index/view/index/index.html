@@ -1,0 +1,25 @@
+{extend name="public:base"/}
+{block name="body"}
+<div class="row">
+    <div class="col-md-8">
+        <div class="page-header">
+            <h2>{$cateName}</h2>
+        </div>
+        {volist name="artList" id="art" empty="$empty"}
+        <div>
+            <img class="img-rounded"src="/uploads/{$art.title_img}" style="margin-right: 10px;float: left;width: 100px;height: 85px;">
+            <div style="float: left;width: 80%;">
+                <h4> <a href="{:url('detail',['id'=>$art.id])}">{$art.title}</a></h4>
+                <p>发布者:{$art.user_id|getUserName} &nbsp;&nbsp;&nbsp;&nbsp;
+                    发布时间:{$art.create_time|date='Y-m-d H:i'}
+                    阅读量:{$art.pv}
+                </p>
+                <div>{$art.content|getArtContent}</a></div>
+                <hr>
+            </div>
+        </div>
+        {/volist}
+        <div class="text-center">  {$artList|raw}   </div>
+    </div>
+
+    {/block}
